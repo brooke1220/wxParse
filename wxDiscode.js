@@ -201,7 +201,7 @@ function urlToHttpUrl(url,rep){
     return  url;
 }
 
-module.exports = {
-    strDiscode:strDiscode,
-    urlToHttpUrl:urlToHttpUrl
+export default {
+    strDiscode,
+    urlToHttpUrl
 }

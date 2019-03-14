@@ -2515,4 +2515,5 @@ showdown.subParser('unescapeSpecialChars', function (text) {
   });
   return text;
 });
-module.exports = showdown;
+
+export default showdown;

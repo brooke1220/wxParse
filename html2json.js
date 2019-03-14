@@ -1,9 +1,10 @@
+import HTMLParser from './htmlparser';
+import wxDiscode from './wxDiscode';
+
 var __placeImgeUrlHttps = "https";
 var __emojisReg = '';
 var __emojisBaseSrc = '';
 var __emojis = {};
-var wxDiscode = require('./wxDiscode.js');
-var HTMLParser = require('./htmlparser.js');
 // Empty Elements - HTML 5
 var empty = makeMap("area,base,basefont,col,frame,br,hr,img,input,link,meta,param,embed,command,keygen,source,track,wbr");
 // Block Elements - HTML 5
@@ -277,14 +278,14 @@ function transEmojiStr(str){
   return emojiObjs;
 }
 
-function emojisInit(reg='',baseSrc="/wxParse/emojis/",emojis){
+function emojisInit(reg='',baseSrc="/wxParse/emojis/",emojis) {
     __emojisReg = reg;
     __emojisBaseSrc=baseSrc;
     __emojis=emojis;
 }
 
-module.exports = {
-    html2json: html2json,
-    emojisInit:emojisInit
+export default {
+    html2json,
+    emojisInit
 };
 

@@ -1,0 +1,23 @@
+{
+  "name": "wx-parse",
+  "version": "0.0.1",
+  "description": "微信小程序富文本解析组件",
+  "main": "wxParse.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./config/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianzhi/wxParse.git"
+  },
+  "keywords": [],
+  "author": "ianzhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ianzhi/wxParse/issues"
+  },
+  "homepage": "https://github.com/ianzhi/wxParse#readme",
+  "devDependencies": {
+  }
+}
