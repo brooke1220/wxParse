@@ -6,7 +6,11 @@
 
 ## 关于组件
 - 本项目使用[icindy/wxParse](https://github.com/icindy/wxParse)代码二次开发。
+- 尽量删除无用注释，以减小项目体积。
 - 欢迎issue，欢迎pr。
+
+## 问题修改优先级
+1. js代码压缩
 
 ## 更新日志
 2019-03-14 修改代码块的默认展示
