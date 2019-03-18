@@ -8,6 +8,14 @@ Component({
     data: {
       type: String,
       value: ''
+    },
+    type: {
+      type: String,
+      value: 'html'
+    },
+    padding: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -22,9 +30,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    /**
+     * 处理链接点击事件
+     */
+    wxParseTagATap: function (e) {
+      wx.setClipboardData({ data: e.currentTarget.dataset.src });
+    }
   },
 
   attached: function () {
-    wxparse.wxParse('article', 'html', this.properties.data, this, 5);
+    wxparse.wxParse('article', this.properties.type, this.properties.data, this, this.properties.padding);
   }
 })
