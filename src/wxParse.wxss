@@ -71,6 +71,7 @@ view{
     color: deepskyblue;
     word-break:break-all;
     overflow:auto;
+    text-decoration: underline;
 }
 
 .wxParse-video{

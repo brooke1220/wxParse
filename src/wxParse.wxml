@@ -46,6 +46,7 @@
         </block>
       </button>
     </block>
+
     <!--li类型-->
     <block wx:elif="{{item.tag == 'li'}}">
       <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
@@ -68,8 +69,8 @@
     </block>
 
     <!--img类型-->
-    <block wx:elif="{{item.tag == 'img'}}">
-      <template is="wxParseImg" data="{{item}}" />
+    <block wx:elif="{{ item.tag == 'img' }}">
+      <template is="wxParseImg" data="{{ item }}" />
     </block>
 
     <!--a类型-->
@@ -80,6 +81,8 @@
         </block>
       </view>
     </block>
+
+    <!--table表格-->
     <block wx:elif="{{item.tag == 'table'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
@@ -88,6 +91,7 @@
       </view>
     </block>
 
+    <!--br换行-->
     <block wx:elif="{{item.tag == 'br'}}">
       <template is="WxParseBr"></template>
     </block>
@@ -102,7 +106,7 @@
     </block>
 
     <!--内联标签-->
-    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+    <view wx:else class="{{ item.classStr }} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
         <template is="wxParse1" data="{{item}}" />
       </block>
