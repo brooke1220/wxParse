@@ -40,6 +40,8 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
   that.setData(bindData)
   that.wxParseImgLoad = wxParseImgLoad;
   that.wxParseImgTap = wxParseImgTap;
+  
+  target.triggerEvent('rendered');
 }
 
 // 图片点击事件
