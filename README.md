@@ -23,9 +23,9 @@
 <wxparse data="{{ html }}" type="html" padding="5"></wxparse>
 ```
 属性说明：
-data： 要渲染到页面的数据
-type： 要渲染数据的类型（html或者md）
-padding: 渲染后的图片内距
+- data： 要渲染到页面的数据
+- type： 要渲染数据的类型（html或者md）
+- padding: 渲染后的图片内距
 ## 小程序示例
 > 微信小程序更新会慢于组件更新，主要在于微信小程序的审核时间。更新状态请以更新日志为准。
 ![微信小程序](./wechat-program.jpg)
