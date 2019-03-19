@@ -4,8 +4,7 @@
   "description": "微信小程序富文本解析组件",
   "main": "wxParse.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config ./config/webpack.config.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -13,7 +12,7 @@
   },
   "keywords": [],
   "author": "ianzhi",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/ianzhi/wxParse/issues"
   },

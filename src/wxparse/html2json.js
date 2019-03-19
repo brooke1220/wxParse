@@ -42,10 +42,12 @@ function removeDOCTYPE(html) {
 
 function trimHtml(html) {
   return html
-        .replace(/\r?\n+/g, '<br/>')
-        .replace(/<!--.*?-->/ig, '')
-        .replace(/\/\*.*?\*\//ig, '')
-        .replace(/[ ]+</ig, '<')
+  .replace(/<!--.*?-->/ig, '')
+  .replace(/\/\*.*?\*\//ig, '')
+  .replace(/<pre(([\s\S])*?)<\/pre>/g, function (e) {
+    return e.replace(/\r?\n+/g, '<br/>')
+  })
+  .replace(/[ ]+</ig, '<')
 }
 
 
