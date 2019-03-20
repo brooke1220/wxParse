@@ -85,13 +85,8 @@ function getDefaultOpts(simple) {
   return ret;
 }
 
-/**
- * Created by Tivie on 06-01-2015.
- */
-
 // Private properties
-var showdown = {},
-    parsers = {},
+var parsers = {},
     extensions = {},
     globalOptions = getDefaultOpts(true),
     flavor = {
@@ -109,182 +104,177 @@ var showdown = {},
       vanilla: getDefaultOpts(true)
     };
 
-/**
- * helper namespace
- * @type {{}}
- */
-showdown.helper = {};
+const showdown = {
+    helper: {
+        /**
+         * Check if var is string
+         * @static
+         * @param {string} a
+         * @returns {boolean}
+         */
+        isString: function isString(a) {
+            'use strict';
+            return (typeof a === 'string' || a instanceof String);
+        },
 
-/**
- * TODO LEGACY SUPPORT CODE
- * @type {{}}
- */
-showdown.extensions = {};
 
-/**
- * Set a global option
- * @static
- * @param {string} key
- * @param {*} value
- * @returns {showdown}
- */
-showdown.setOption = function (key, value) {
-  'use strict';
-  globalOptions[key] = value;
-  return this;
-};
+        /**
+         * Check if var is a function
+         * @static
+         * @param {string} a
+         * @returns {boolean}
+         */
+        isFunction: function isFunction(a) {
+            'use strict';
+            var getType = {};
+            return a && getType.toString.call(a) === '[object Function]';
+        }
+    },
+    extensions: {},
+    setOption: function (key, value) {
+        'use strict';
+        globalOptions[key] = value;
+        return this;
+    },
+    getOption: function (key) {
+        'use strict';
+        return globalOptions[key];
+    },
+    getOptions: function () {
+        'use strict';
+        return globalOptions;
+    },
+    resetOptions: function () {
+        'use strict';
+        globalOptions = getDefaultOpts(true);
+    },
+    setFlavor: function (name) {
+        'use strict';
+        if (flavor.hasOwnProperty(name)) {
+            var preset = flavor[name];
+            for (var option in preset) {
+                if (preset.hasOwnProperty(option)) {
+                    globalOptions[option] = preset[option];
+                }
+            }
+        }
+    },
+    getDefaultOptions: function (simple) {
+        'use strict';
+        return getDefaultOpts(simple);
+    },
 
-/**
- * Get a global option
- * @static
- * @param {string} key
- * @returns {*}
- */
-showdown.getOption = function (key) {
-  'use strict';
-  return globalOptions[key];
-};
+    /**
+     * Get or set a subParser
+     *
+     * subParser(name)       - Get a registered subParser
+     * subParser(name, func) - Register a subParser
+     * @static
+     * @param {string} name
+     * @param {function} [func]
+     * @returns {*}
+     */
+    subParser: function (name, func) {
+        'use strict';
+        if (showdown.helper.isString(name)) {
+            if (typeof func !== 'undefined') {
+                parsers[name] = func;
+            } else {
+                if (parsers.hasOwnProperty(name)) {
+                    return parsers[name];
+                } else {
+                    throw Error('SubParser named ' + name + ' not registered!');
+                }
+            }
+        }
+    },
 
-/**
- * Get the global options
- * @static
- * @returns {{}}
- */
-showdown.getOptions = function () {
-  'use strict';
-  return globalOptions;
-};
+    /**
+     * Gets or registers an extension
+     * @static
+     * @param {string} name
+     * @param {object|function=} ext
+     * @returns {*}
+     */
+    extension: function (name, ext) {
+        'use strict';
 
-/**
- * Reset global options to the default values
- * @static
- */
-showdown.resetOptions = function () {
-  'use strict';
-  globalOptions = getDefaultOpts(true);
-};
+        if (!showdown.helper.isString(name)) {
+            throw Error('Extension \'name\' must be a string');
+        }
 
-/**
- * Set the flavor showdown should use as default
- * @param {string} name
- */
-showdown.setFlavor = function (name) {
-  'use strict';
-  if (flavor.hasOwnProperty(name)) {
-    var preset = flavor[name];
-    for (var option in preset) {
-      if (preset.hasOwnProperty(option)) {
-        globalOptions[option] = preset[option];
-      }
+        name = showdown.helper.stdExtName(name);
+
+        // Getter
+        if (showdown.helper.isUndefined(ext)) {
+            if (!extensions.hasOwnProperty(name)) {
+                throw Error('Extension named ' + name + ' is not registered!');
+            }
+            return extensions[name];
+
+            // Setter
+        } else {
+            // Expand extension if it's wrapped in a function
+            if (typeof ext === 'function') {
+                ext = ext();
+            }
+
+            // Ensure extension is an array
+            if (!showdown.helper.isArray(ext)) {
+                ext = [ext];
+            }
+
+            var validExtension = validate(ext, name);
+
+            if (validExtension.valid) {
+                extensions[name] = ext;
+            } else {
+                throw Error(validExtension.error);
+            }
+        }
+    },
+
+    /**
+     * Gets all extensions registered
+     * @returns {{}}
+     */
+    getAllExtensions: function () {
+        'use strict';
+        return extensions;
+    },
+
+    /**
+     * Remove an extension
+     * @param {string} name
+     */
+    removeExtension: function (name) {
+        'use strict';
+        delete extensions[name];
+    },
+
+    /**
+     * Removes all extensions
+     */
+    resetExtensions: function () {
+        'use strict';
+        extensions = {};
+    },
+
+    /**
+     * Validate extension
+     * @param {object} ext
+     * @returns {boolean}
+     */
+    validateExtension: function (ext) {
+        'use strict';
+
+        var validateExtension = validate(ext, null);
+        if (!validateExtension.valid) {
+            console.warn(validateExtension.error);
+            return false;
+        }
+        return true;
     }
-  }
-};
-
-/**
- * Get the default options
- * @static
- * @param {boolean} [simple=true]
- * @returns {{}}
- */
-showdown.getDefaultOptions = function (simple) {
-  'use strict';
-  return getDefaultOpts(simple);
-};
-
-/**
- * Get or set a subParser
- *
- * subParser(name)       - Get a registered subParser
- * subParser(name, func) - Register a subParser
- * @static
- * @param {string} name
- * @param {function} [func]
- * @returns {*}
- */
-showdown.subParser = function (name, func) {
-  'use strict';
-  if (showdown.helper.isString(name)) {
-    if (typeof func !== 'undefined') {
-      parsers[name] = func;
-    } else {
-      if (parsers.hasOwnProperty(name)) {
-        return parsers[name];
-      } else {
-        throw Error('SubParser named ' + name + ' not registered!');
-      }
-    }
-  }
-};
-
-/**
- * Gets or registers an extension
- * @static
- * @param {string} name
- * @param {object|function=} ext
- * @returns {*}
- */
-showdown.extension = function (name, ext) {
-  'use strict';
-
-  if (!showdown.helper.isString(name)) {
-    throw Error('Extension \'name\' must be a string');
-  }
-
-  name = showdown.helper.stdExtName(name);
-
-  // Getter
-  if (showdown.helper.isUndefined(ext)) {
-    if (!extensions.hasOwnProperty(name)) {
-      throw Error('Extension named ' + name + ' is not registered!');
-    }
-    return extensions[name];
-
-    // Setter
-  } else {
-    // Expand extension if it's wrapped in a function
-    if (typeof ext === 'function') {
-      ext = ext();
-    }
-
-    // Ensure extension is an array
-    if (!showdown.helper.isArray(ext)) {
-      ext = [ext];
-    }
-
-    var validExtension = validate(ext, name);
-
-    if (validExtension.valid) {
-      extensions[name] = ext;
-    } else {
-      throw Error(validExtension.error);
-    }
-  }
-};
-
-/**
- * Gets all extensions registered
- * @returns {{}}
- */
-showdown.getAllExtensions = function () {
-  'use strict';
-  return extensions;
-};
-
-/**
- * Remove an extension
- * @param {string} name
- */
-showdown.removeExtension = function (name) {
-  'use strict';
-  delete extensions[name];
-};
-
-/**
- * Removes all extensions
- */
-showdown.resetExtensions = function () {
-  'use strict';
-  extensions = {};
 };
 
 /**
@@ -396,51 +386,12 @@ function validate(extension, name) {
 }
 
 /**
- * Validate extension
- * @param {object} ext
- * @returns {boolean}
- */
-showdown.validateExtension = function (ext) {
-  'use strict';
-
-  var validateExtension = validate(ext, null);
-  if (!validateExtension.valid) {
-    console.warn(validateExtension.error);
-    return false;
-  }
-  return true;
-};
-
-/**
  * showdownjs helper functions
  */
 
 if (!showdown.hasOwnProperty('helper')) {
   showdown.helper = {};
 }
-
-/**
- * Check if var is string
- * @static
- * @param {string} a
- * @returns {boolean}
- */
-showdown.helper.isString = function isString(a) {
-  'use strict';
-  return (typeof a === 'string' || a instanceof String);
-};
-
-/**
- * Check if var is a function
- * @static
- * @param {string} a
- * @returns {boolean}
- */
-showdown.helper.isFunction = function isFunction(a) {
-  'use strict';
-  var getType = {};
-  return a && getType.toString.call(a) === '[object Function]';
-};
 
 /**
  * ForEach helper function

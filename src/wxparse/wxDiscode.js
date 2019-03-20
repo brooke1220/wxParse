@@ -99,8 +99,6 @@ function strGreeceDiscode(str){
     return str;
 }
 
-// 
-
 function strcharacterDiscode(str){
     // 加入常用解析
     str = str.replace(/&nbsp;/g, ' ');
@@ -191,6 +189,7 @@ function strDiscode(str){
     str = strMoreDiscode(str);
     return str;
 }
+
 function urlToHttpUrl(url,rep){
     
     var patt1 = new RegExp("^//");
