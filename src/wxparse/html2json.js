@@ -1,7 +1,9 @@
+/**
+ * 解析html字符串为json对象
+ */
 import HTMLParser from './htmlparser';
 import wxDiscode from './wxDiscode';
 import config from './config.js';
-
 
 var __placeImgeUrlHttps = "https";
 var __emojisReg = '';
@@ -10,6 +12,11 @@ var __emojis = {};
 
 class HtmlToJson
 {
+  /**
+   * 移除内容中的文档声明
+   * 
+   * @param html string
+   */
     static removeDOCTYPE(html) {
         return html
             .replace(/<\?xml.*\?>\n/, '')
@@ -17,6 +24,11 @@ class HtmlToJson
             .replace(/<.*!DOCTYPE.*\>\n/, '');
     }
 
+    /**
+     * 删除注释内容
+     * 
+     * @param html string
+     */
     static trimHtml(html) {
         return html
             .replace(/<!--.*?-->/ig, '')
@@ -27,19 +39,31 @@ class HtmlToJson
             .replace(/[ ]+</ig, '<')
     }
 
+    /**
+     * 配置emoji表情
+     * 
+     * @param reg pattern
+     * @param baseSrc string
+     * @param emojis object
+     */
     static emojisInit(reg='',baseSrc="/wxParse/emojis/",emojis) {
         __emojisReg = reg;
         __emojisBaseSrc=baseSrc;
         __emojis=emojis;
     }
 
-
+    /**
+     * 解析html为json对象
+     * 
+     * @param html string 
+     * @param bindName string
+     */
     static html2json(html, bindName) {
-        //处理字符串
-
+        // 处理字符串
         html = HtmlToJson.removeDOCTYPE(html);
         html = HtmlToJson.trimHtml(html);
         html = wxDiscode.strDiscode(html);
+        
         //生成node节点
         var bufArray = [];
         var results = {
@@ -96,7 +120,6 @@ class HtmlToJson
                         if (value.match(/ /)) {
                             value = value.split(' ');
                         }
-
 
                         // if attr already exists
                         // merge it
@@ -228,12 +251,12 @@ class HtmlToJson
         return results;
     }
 
-
+    /**
+     * 转换emoji字符串为表情图
+     */
     static transEmojiStr(str){
-        // var eReg = new RegExp("["+__reg+' '+"]");
-//   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
-
         var emojiObjs = [];
+
         //如果正则表达式为空
         if(__emojisReg.length == 0 || !__emojis){
             var emojiObj = {}

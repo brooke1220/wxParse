@@ -1,3 +1,6 @@
+/**
+ * 替换特殊符号
+ */
 // HTML 支持的数学符号
 function strNumDiscode(str){
     str = str.replace(/&forall;/g, '∀');
@@ -191,7 +194,6 @@ function strDiscode(str){
 }
 
 function urlToHttpUrl(url,rep){
-    
     var patt1 = new RegExp("^//");
     var result = patt1.test(url);
     if(result){

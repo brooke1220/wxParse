@@ -2,18 +2,19 @@ import config from './config.js';
 
 function HTMLParser(html, handler) {
 	var index, chars, match, stack = [], last = html;
+
 	stack.last = function () {
 		return this[this.length - 1];
 	};
 
 	while (html) {
-		chars = true;
-
+    chars = true;
+    
 		// Make sure we're not in a script or style element
 		if (!stack.last() || !config.elements.special[stack.last()]) {
-
-			// Comment
-			if (html.indexOf("<!--") == 0) {
+      
+			// Comment  
+      if (html.indexOf("<!--") == 0) {
 				index = html.indexOf("-->");
 
 				if (index >= 0) {
@@ -24,7 +25,7 @@ function HTMLParser(html, handler) {
 				}
 
 				// end tag
-			} else if (html.indexOf("</") == 0) {
+      } else if (html.indexOf("</") == 0) {
 				match = html.match(config.reg.endTag);
 
 				if (match) {
@@ -37,9 +38,9 @@ function HTMLParser(html, handler) {
 			} else if (html.indexOf("<") == 0) {
 				match = html.match(config.reg.startTag);
 
-				if (match) {
-					html = html.substring(match[0].length);
-					match[0].replace(config.reg.startTag, parseStartTag);
+        if (match) {
+          html = html.substring(match[0].length);
+          match[0].replace(config.reg.startTag, parseStartTag);
 					chars = false;
 				}
 			}
@@ -48,9 +49,9 @@ function HTMLParser(html, handler) {
 				index = html.indexOf("<");
 				var text = ''
 				while (index === 0) {
-                                  text += "<";
-                                  html = html.substring(1);
-                                  index = html.indexOf("<");
+          text += "<";
+          html = html.substring(1);
+          index = html.indexOf("<");
 				}
 				text += index < 0 ? html : html.substring(0, index);
 				html = index < 0 ? "" : html.substring(index);
@@ -58,7 +59,6 @@ function HTMLParser(html, handler) {
 				if (handler.chars)
 					handler.chars(text);
 			}
-
 		} else {
 
 			html = html.replace(new RegExp("([\\s\\S]*?)<\/" + stack.last() + "[^>]*>"), function (all, text) {
@@ -81,7 +81,8 @@ function HTMLParser(html, handler) {
 	// Clean up any remaining tags
 	parseEndTag();
 
-	function parseStartTag(tag, tagName, rest, unary) {
+  function parseStartTag(tag, tagName, rest, unary) {   
+
 		tagName = tagName.toLowerCase();
 
 		if (config.elements.block[tagName]) {
@@ -102,7 +103,7 @@ function HTMLParser(html, handler) {
 		if (handler.start) {
 			var attrs = [];
 
-			rest.replace(config.reg.attr, function (match, name) {
+      rest.replace(config.reg.attr, function (match, name) {
 				var value = arguments[2] ? arguments[2] :
 					arguments[3] ? arguments[3] :
 						arguments[4] ? arguments[4] :
@@ -112,7 +113,7 @@ function HTMLParser(html, handler) {
 					name: name,
 					value: value,
 					escaped: value.replace(/(^|[^\\])"/g, '$1\\\"') //"
-				});
+        });
 			});
 
 			if (handler.start) {

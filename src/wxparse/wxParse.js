@@ -1,9 +1,5 @@
 /**
  * 微信小程序html渲染
- * 
- * @author ianzhi
- * @email ianzhi@126.com
- * @date 2019-03-20
  */
 import showdown from './showdown.js';
 import htmlToJson from './html2json.js';
@@ -20,23 +16,17 @@ class WxParse
    * @param imagePadding 图片渲染内距
    */
   static parse(bindName = 'wxParseData', type = 'html', data = '<div class="color:red;">数据不能为空</div>', target, imagePadding) {
-    // 存放转化后的数据
-    let transData = {};
+    const bindData = {};
+
     if (type === 'html') {
-      transData = htmlToJson.html2json(data, bindName);
+      bindData[bindName] = htmlToJson.html2json(data, bindName);
     } else if (type === 'md' || type === 'markdown') {
       let converter = new showdown.Converter();
-      let html = converter.makeHtml(data);
-      transData = htmlToJson.html2json(html, bindName);
+      bindData[bindName] = htmlToJson.html2json(converter.makeHtml(data), bindName);
     }
-    transData.view = {};
-    transData.view.imagePadding = 0;
-    if (typeof (imagePadding) != 'undefined') {
-      transData.view.imagePadding = imagePadding
-    }
+    bindData[bindName].view = {};
+    bindData[bindName].view.imagePadding = typeof (imagePadding) != 'undefined' ? imagePadding : 0;
 
-    const bindData = {};
-    bindData[bindName] = transData;
     target.setData(bindData);
     target.triggerEvent('rendered');
   }
