@@ -4,6 +4,7 @@
 import HTMLParser from './htmlparser';
 import wxDiscode from './wxDiscode';
 import config from './config.js';
+import hljs from '../highlight/hljs.js';
 
 var __placeImgeUrlHttps = "https";
 var __emojisReg = '';
@@ -30,13 +31,14 @@ class HtmlToJson
      * @param html string
      */
     static trimHtml(html) {
-        return html
-            .replace(/<!--.*?-->/ig, '')
-            .replace(/\/\*.*?\*\//ig, '')
-            .replace(/<pre(([\s\S])*?)<\/pre>/g, function (e) {
-                return e.replace(/\r?\n+/g, '<br/>')
-            })
-            .replace(/[ ]+</ig, '<')
+      return html
+          .replace(/<!--.*?-->/ig, '')
+          .replace(/\/\*.*?\*\//ig, '')
+          .replace(/<pre(.+)(([\s\S])*?)<\/pre>/g, function (e) {
+            e = hljs.highlightAuto(e).value;
+            return e.replace(/\r?\n+/g, '<br/>');
+          })
+          .replace(/[ ]+</ig, '<')
     }
 
     /**
@@ -101,6 +103,9 @@ class HtmlToJson
                     node.tagType = "closeSelf";
                 }
 
+                if (tag == 'pre') {
+                  attrs.push({ name: 'class', value: 'hljs'});
+                }
                 if (attrs.length !== 0) {
                     node.attr = attrs.reduce(function (pre, attr) {
                         var name = attr.name;

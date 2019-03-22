@@ -1,3 +1,5 @@
+@import './highlight/styles/github.wxss';
+
 .wxparse{
   font-size: 28rpx;
   line-height: 40rpx;
@@ -73,8 +75,7 @@
 .wxParse-pre{
   overflow-x: scroll;
   white-space:pre;
-  background:#f5f5f5;
-  padding: 20rpx;
+  margin: 10rpx 0;
   border: 1px solid #eee;
 }
 .wxParse-big{font-size:1.17em}
