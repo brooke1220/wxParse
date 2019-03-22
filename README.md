@@ -26,15 +26,24 @@
 - data： 要渲染到页面的数据
 - type： 要渲染数据的类型（html或者md）
 - padding: 渲染后的图片内距
+
+- 关于代码高亮
+    - 代码高亮使用highlight.js
+    - 对于其他语言的支持，请直接到[这里](https://github.com/highlightjs/highlight.js/blob/master/src/languages)查看所有支持的语言
+    - 其他的皮肤主题，请到[这里](https://github.com/highlightjs/highlight.js/blob/master/src/styles)查看所有的主题。
+    - 添加支持的语言需要在语言在function关键字前加入`export default`
+    - 需要在src/highlight/hljs中注册语言
 ## 小程序示例
 > 微信小程序更新会慢于组件更新，主要在于微信小程序的审核时间。更新状态请以更新日志为准。
 ![微信小程序](./wechat-program.jpg)
 
 ## 待修复问题
-- 整理组件代码,减少组件体积
+- 整理代码高亮代码,减少代码体积
 - 删除组件中调用的微信api，改为传入参数
 
 ## 更新日志
+- 2019-09-22
+    - 添加基本的代码高亮
 - 2019-03-20
     - 整理代码结构
 - 2019-03-19
