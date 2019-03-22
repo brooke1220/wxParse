@@ -23,9 +23,9 @@
 <wxparse data="{{ html }}" type="html" padding="5"></wxparse>
 ```
 属性说明：
-- data： 要渲染到页面的数据
-- type： 要渲染数据的类型（html或者md）
-- padding: 渲染后的图片内距
+    - data： 要渲染到页面的数据
+    - type： 要渲染数据的类型（html或者md）
+    - padding: 渲染后的图片内距
 
 - 关于代码高亮
     - 代码高亮使用highlight.js
