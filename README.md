@@ -9,7 +9,7 @@
 - 欢迎issue，欢迎pr。
 
 ## 使用方式
-- 在需要使用组件的配置文件上添加组件
+### 在需要使用组件的配置文件上添加组件
 ```json
 {
   "usingComponents": {
@@ -18,21 +18,22 @@
 }
 ```
 
-- 在页面wxml中
+### 在页面wxml中
 ```html
 <wxparse data="{{ html }}" type="html" padding="5"></wxparse>
 ```
 属性说明：
-    - data： 要渲染到页面的数据
-    - type： 要渲染数据的类型（html或者md）
-    - padding: 渲染后的图片内距
+- data： 要渲染到页面的数据
+- type： 要渲染数据的类型（html或者md）
+- padding: 渲染后的图片内距
 
-- 关于代码高亮
-    - 代码高亮使用highlight.js
-    - 对于其他语言的支持，请直接到[这里](https://github.com/highlightjs/highlight.js/blob/master/src/languages)查看所有支持的语言
-    - 其他的皮肤主题，请到[这里](https://github.com/highlightjs/highlight.js/blob/master/src/styles)查看所有的主题。
-    - 添加支持的语言需要在语言在function关键字前加入`export default`
-    - 需要在src/highlight/hljs中注册语言
+### 关于代码高亮
+- 代码高亮使用highlight.js
+- 对于其他语言的支持，请直接到[这里](https://github.com/highlightjs/highlight.js/blob/master/src/languages)查看所有支持的语言
+- 其他的皮肤主题，请到[这里](https://github.com/highlightjs/highlight.js/blob/master/src/styles)查看所有的主题。
+- 添加支持的语言需要在语言在function关键字前加入`export default`
+- 需要在src/highlight/hljs中注册语言
+- 主题文件需要在wxparse.wxss中引入
 ## 小程序示例
 > 微信小程序更新会慢于组件更新，主要在于微信小程序的审核时间。更新状态请以更新日志为准。
 ![微信小程序](./wechat-program.jpg)
