@@ -9,6 +9,14 @@
 - 欢迎issue，欢迎pr。
 
 ## 使用方式
+### npm
+```shell
+npm install wechat-wxparse --save
+```
+
+### 微信小程序插件
+申请中。
+
 ### 在需要使用组件的配置文件上添加组件
 ```json
 {

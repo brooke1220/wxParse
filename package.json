@@ -1,6 +1,6 @@
 {
-  "name": "wx-parse",
-  "version": "0.0.1",
+  "name": "wechat-wxparse",
+  "version": "1.0.1",
   "description": "微信小程序富文本解析组件",
   "main": "wxParse.js",
   "scripts": {
@@ -10,13 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/ianzhi/wxParse.git"
   },
-  "keywords": [],
+  "keywords": [
+  	"微信小程序",
+	"富文本解析",
+	"richtext",
+	"html"
+  ],
   "author": "ianzhi",
   "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/ianzhi/wxParse/issues"
   },
-  "homepage": "https://github.com/ianzhi/wxParse#readme",
+  "homepage": "https://www.iian.xyz",
   "devDependencies": {
   }
 }
