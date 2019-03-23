@@ -27,19 +27,26 @@ class HtmlToJson
 
     /**
      * 删除注释内容
+     * 重置代码块
+     * 替换代码块换行为<br/>标签
      * 
      * @param html string
      */
-    static trimHtml(html) {
-      return html
-          .replace(/<!--.*?-->/ig, '')
-          .replace(/\/\*.*?\*\//ig, '')
-          .replace(/<pre(.+)(([\s\S])*?)<\/pre>/g, function (e) {
-            e = hljs.highlightAuto(e).value;
-            return e.replace(/\r?\n+/g, '<br/>');
-          })
-          .replace(/[ ]+</ig, '<')
-    }
+  static trimHtml(html) {
+    html = html
+      .replace(/<!--.*?-->/ig, '')
+      .replace(/\/\*.*?\*\//ig, '')
+      .replace(/<pre>(<code[\S\s]*?>)([\s\S]+)(([\s\S])*?)<\/pre>/g, function (e) {
+        let code = arguments[2];
+        let highLightCode = hljs.highlightAuto(code).value;
+        console.log(highLightCode)
+        e = e.replace(code, highLightCode);
+        return e.replace(/\r?\n+/g, '<br/>');
+      })
+      .replace(/[ ]+</ig, '<')
+      // console.log(html)
+    return html
+  }
 
     /**
      * 配置emoji表情
