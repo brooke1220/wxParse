@@ -1,4 +1,4 @@
-@import './highlight/styles/github.wxss';
+@import './highlight/styles/dark.wxss';
 
 .wxparse{
   font-size: 28rpx;

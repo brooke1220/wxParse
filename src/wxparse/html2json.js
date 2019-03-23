@@ -33,19 +33,20 @@ class HtmlToJson
      * @param html string
      */
   static trimHtml(html) {
-    html = html
+     html = html
       .replace(/<!--.*?-->/ig, '')
       .replace(/\/\*.*?\*\//ig, '')
-      .replace(/<pre>(<code[\S\s]*?>)([\s\S]+)(([\s\S])*?)<\/pre>/g, function (e) {
+       .replace(/(<code[\s\S]*>)(([\s\S])*?)(<\/code>)/g, function (e) {
         let code = arguments[2];
-        let highLightCode = hljs.highlightAuto(code).value;
-        console.log(highLightCode)
-        e = e.replace(code, highLightCode);
-        return e.replace(/\r?\n+/g, '<br/>');
+        // let brCode = code.replace(/\r?\n+/g, '<br/>');
+        // let discode = wxDiscode.strDiscode(brCode);
+         let disCode = wxDiscode.strOtherDiscode(code);
+         let highLightCode = hljs.highlightAuto(disCode).value;
+        return e.replace(code, highLightCode)
+          .replace(/\r?\n+/g, '<br/>');
       })
-      .replace(/[ ]+</ig, '<')
-      // console.log(html)
-    return html
+      .replace(/[ ]+</ig, '<');
+      return html;
   }
 
     /**
@@ -69,9 +70,9 @@ class HtmlToJson
      */
     static html2json(html, bindName) {
         // 处理字符串
-        html = HtmlToJson.removeDOCTYPE(html);
-        html = HtmlToJson.trimHtml(html);
-        html = wxDiscode.strDiscode(html);
+      html = HtmlToJson.removeDOCTYPE(html);
+      html = HtmlToJson.trimHtml(html);
+      html = wxDiscode.strDiscode(html);
         
         //生成node节点
         var bufArray = [];
@@ -110,6 +111,9 @@ class HtmlToJson
                     node.tagType = "closeSelf";
                 }
 
+                /**
+                 * 给pre标签添加hljs类名
+                 */
                 if (tag == 'pre') {
                   attrs.push({ name: 'class', value: 'hljs'});
                 }

@@ -204,5 +204,6 @@ function urlToHttpUrl(url,rep){
 
 export default {
     strDiscode,
-    urlToHttpUrl
+    urlToHttpUrl,
+  strOtherDiscode
 }
