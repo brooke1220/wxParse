@@ -7,6 +7,7 @@
 ## 关于组件
 - 本项目使用[icindy/wxParse](https://github.com/icindy/wxParse)代码二次开发。
 - 欢迎issue，欢迎pr。
+- 组件使用了lifetimes属性，请确保基础库版本`>=`2.2.3。如果需要支持`2.2.3`以下版本，将生命周期函数复制到Component构造器的第一级参数中即可。
 
 ## 使用方式
 ### npm
