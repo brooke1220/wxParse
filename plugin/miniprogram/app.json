@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "plugins": {
+    "wxparse": {
+      "version": "dev",
+      "provider": "wx5d60c080635009b1"
+    }
+  }
+}
