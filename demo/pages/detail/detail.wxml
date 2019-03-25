@@ -1,0 +1,35 @@
+<view class="loading" wx:if="{{ loading }}">
+  <image src="../../images/loading-white.gif"></image>
+</view>
+<view class="post-cover">
+  <image src="{{ post.images[0] }}"></image>
+</view>
+<view class="post" style="display: {{ loading ? 'none' : 'auto' }};">
+
+  <view class="post-title">{{ post.title }}</view>
+
+  <view class="post-info">
+    <text class="post-author"><text class="icon-group"></text> {{ post.author }}</text>
+  </view>
+
+  <view class="post-content">
+    <wxparse data="{{ post.content_html }}" style="display: {{ loading ? 'none' : 'auto' }};" bindrendered="handleWxparseRendered"></wxparse>
+  </view>
+
+  <view class="hr"></view>
+
+  <view class="copyright">
+    <view class="h2">版权声明</view>
+    <view class="content">文章版权归作者所有，未经授权请勿转载。</view>
+  </view>
+
+  <view class="official-account">
+    <official-account></official-account>
+  </view>
+</view>
+
+<view class="navbar">
+  <view class="back" bindtap="handleBack"><text class="icon-back"></text></view>
+
+  <button class="share" open-type="share"><text class="icon-share"></text></button>
+</view>

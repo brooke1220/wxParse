@@ -1,0 +1,24 @@
+.container {
+  text-align: center;
+}
+
+.avatar {
+  margin: 0 auto;
+  margin-top: 300rpx;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.nickname {
+  margin-top: 50rpx;
+}
+
+.btn-group {
+  margin-top: 100rpx;
+}
+
+.cancel-btn {
+  margin-top: 40rpx;
+}

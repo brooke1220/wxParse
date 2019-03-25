@@ -1,0 +1,42 @@
+page {
+  background-color: #eeeeee;
+}
+
+.post-item {
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.post-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.post-desc {
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+
+.post-desc image {
+  width: 220rpx;
+  height: 165rpx;
+  float: left;
+}
+
+.post-desc image:not(:nth-child(3n+1)) {
+  margin-left: 15rpx;
+}
+
+.post-desc view {
+  float: left;
+  width: 455rpx;
+  margin-left: 15rpx;
+}
+
+.loadingText {
+  background-color: #fff;
+  text-align: center;
+  margin-bottom: 20rpx;
+  padding: 30rpx 0;
+}

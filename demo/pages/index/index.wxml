@@ -1,0 +1,32 @@
+<wxs src="../../wxs/string.wxs" module="string" />
+
+<view>
+  <block wx:for="{{ posts }}" wx:key="{{ index }}">
+    <navigator wx:if="{{ item && item.title }}" class="post-item" url="../detail/detail?id={{ item.id }}">
+      <view class="post-title">{{ item.title }}</view>
+
+      <view class="post-desc" wx:if="{{ item.images.length > 1 }}">
+        <image wx:for="{{ item.images }}" wx:key="{{ index }}" src="{{ item }}" mode="aspectFit" lazy-load></image>
+      </view>
+
+      <view class="post-desc" wx:if="{{ item.images.length < 3 && item.images.length == 1 }}">
+        <image wx:for="{{ item.images }}" wx:key="{{ index }}" src="{{ item }}" mode="aspectFit" lazy-load></image>
+        <view>{{ item.description }}</view>
+      </view>
+
+      <view class="post-desc" wx:if="{{ item.images.length < 1 }}">
+      {{ item.description }}
+      </view>
+
+      <view class="post-info">
+        <text class="post-author">{{ item.author ? item.author : '未知的作者' }}</text>
+        <!-- <text class="pv">{{ item.pv }}阅读</text>
+        <text class="comment">{{ item.commentsCount }}评论</text>
+        <text class="star">{{ item.starsCount }}喜欢</text> -->
+        <text class="post-published-at">{{ item.created_at }}</text>
+      </view>
+    </navigator>
+  </block>
+
+  <view class="loadingText" wx:if="{{ loading.show }}">{{ loading.loadingText }}</view>
+</view>

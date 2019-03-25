@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="avatar"><open-data type="userAvatarUrl"></open-data></view>
+  
+  <view class="nickname"><open-data type="userNickName"></open-data></view>
+
+  <view class="btn-group">
+    <button class="login-btn" size="mini">登陆</button>
+    <navigator class="cancel-btn" open-type="exit" target="miniProgram">取消</navigator> 
+  </view>
+</view>

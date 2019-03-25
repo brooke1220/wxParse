@@ -1,0 +1,73 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"uglifyFileName": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.0",
+	"appid": "wxf5fc4948fa064936",
+	"projectname": "ian%E6%9C%89%E8%AF%9D%E8%AF%B4",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "详情页面",
+					"pathName": "pages/detail/detail",
+					"query": "id=64",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "后台扫码登陆",
+					"pathName": "pages/weblogin/weblogin",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "图片分享",
+					"pathName": "pages/share/share",
+					"query": "content=人生苦短，我用python",
+					"scene": null
+				}
+			]
+		}
+	}
+}

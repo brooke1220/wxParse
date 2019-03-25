@@ -1,0 +1,93 @@
+.loading {
+  text-align: center;
+}
+
+.post {
+  padding: 20rpx;
+  margin: 40rpx 0 80rpx 0;
+}
+
+.post-cover image{
+  width: 100%;
+}
+
+.post-title {
+  font-size: 40rpx;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 2rpx;
+  line-height: 80rpx;
+}
+
+.post-info {
+  margin: 40rpx 0;
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+}
+
+.post-content {
+  margin-top: 60rpx;
+}
+
+.official-account {
+  margin-top: 20rpx;
+}
+
+.icon {
+  width: 25rpx;
+  height: 25rpx;
+  vertical-align: center;
+}
+
+.hr {
+  margin: 60rpx 0;
+}
+
+.copyright {
+  padding: 20rpx;
+  background-color: #eee;
+}
+
+.copyright .h2 {
+  font-weight: bold;
+  margin: 10rpx 0;
+}
+
+.copyright .content {
+  margin-top: 10rpx;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  background-color: #efefef;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 0 20rpx #ccc;
+  overflow: hidden;
+}
+
+.navbar .back {
+  float: left;
+  width: 80rpx;
+}
+
+.navbar .share {
+  float: right;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0;
+  margin: 0;
+  border-radius:0;
+  background: none;
+  text-align: left;
+}
+
+.navbar .share::after {
+  border: none;
+}
