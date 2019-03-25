@@ -49,6 +49,7 @@ npm install wechat-wxparse --save
 - 整理代码高亮代码,减少代码体积
 - 删除组件中调用的微信api，改为传入参数
 - 表格解析有误的问题
+- 后端html转json插件
 
 ## 更新日志
 - 2019-03-25
