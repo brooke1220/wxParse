@@ -36,14 +36,12 @@ class HtmlToJson
      html = html
       .replace(/<!--.*?-->/ig, '')
       .replace(/\/\*.*?\*\//ig, '')
-       .replace(/(<code[\s\S]*>)(([\s\S])*?)(<\/code>)/g, function (e) {
+      .replace(/(<code[\s\S]*>)(([\s\S])*?)(<\/code>)/g, function (e) {
         let code = arguments[2];
-        // let brCode = code.replace(/\r?\n+/g, '<br/>');
-        // let discode = wxDiscode.strDiscode(brCode);
-         let disCode = wxDiscode.strOtherDiscode(code);
-         let highLightCode = hljs.highlightAuto(disCode).value;
-        return e.replace(code, highLightCode)
-          .replace(/\r?\n+/g, '<br/>');
+        let disCode = wxDiscode.strOtherDiscode(code);
+        let highLightCode = hljs.highlightAuto(disCode).value;
+        
+        return e.replace(code, highLightCode);
       })
       .replace(/[ ]+</ig, '<');
       return html;

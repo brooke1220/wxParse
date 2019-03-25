@@ -27,6 +27,7 @@ class WxParse
     bindData[bindName].view = {};
     bindData[bindName].view.imagePadding = typeof (imagePadding) != 'undefined' ? imagePadding : 0;
 
+    console.log(bindData)
     target.setData(bindData);
     target.triggerEvent('rendered');
   }

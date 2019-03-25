@@ -78,6 +78,7 @@
   margin: 10rpx 0;
   border: 1px solid #eee;
 }
+.wxParse-pre view, .wxParse-pre text { white-space: pre; }
 .wxParse-big{font-size:1.17em}
 .wxParse-small,.wxParse-sub,.wxParse-sup{font-size:.83em}
 .wxParse-sub{vertical-align:sub}
