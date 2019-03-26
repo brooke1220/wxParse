@@ -10,12 +10,8 @@
 - 组件使用了lifetimes属性，请确保基础库版本`>=`2.2.3。如果需要支持`2.2.3`以下版本，将生命周期函数复制到Component构造器的第一级参数中即可。
 
 ## 使用方式
-### 1. npm
-```shell
-npm install wechat-wxparse --save
-```
-
-### 2. 在需要使用组件的配置文件上添加组件
+### 复制源代码方式 
+#### 1. 在需要使用组件的配置文件上添加组件
 ```json
 {
   "usingComponents": {
@@ -24,7 +20,7 @@ npm install wechat-wxparse --save
 }
 ```
 
-### 3. 在页面wxml中
+#### 2. 在页面wxml中
 ```html
 <wxparse data="{{ html }}" type="html" padding="5"></wxparse>
 ```
@@ -32,6 +28,36 @@ npm install wechat-wxparse --save
 - data： 要渲染到页面的数据
 - type： 要渲染数据的类型（html或者md）
 - padding: 渲染后的图片内距
+
+### 插件方式
+#### 1. 微信公众平台后台添加插件
+搜索`htmlparse`,之后添加。
+#### 2. 小程序配置(app.json)中添加插件
+```json
+{
+  "plugins": {
+    ...,
+    "wxparse": {
+      "version": "1.0.1",
+      "provider": "wx5d60c080635009b1"
+    },
+    ...
+}
+```
+#### 3. 在需要使用的页面添加组件
+```json
+{
+  ...,
+  "usingComponents": {
+    "wxparse": "plugin://wxparse/wxparse"
+  },
+  ...
+}
+```
+#### 4. 在wxml中使用组件
+```html
+<wxparse data="{{ article.content_html }}"></wxparse>
+```
 
 ### 4. 关于代码高亮
 - 代码高亮使用highlight.js
