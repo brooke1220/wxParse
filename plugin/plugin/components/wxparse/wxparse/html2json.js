@@ -43,7 +43,7 @@ class HtmlToJson
         
         return e.replace(code, highLightCode);
       })
-      .replace(/[ ]+</ig, '<');
+      // .replace(/[ ]+</ig, '<');
       return html;
   }
 

@@ -50,7 +50,7 @@
 					"id": 0,
 					"name": "详情页面",
 					"pathName": "pages/detail/detail",
-					"query": "id=64",
+					"query": "id=70",
 					"scene": null
 				},
 				{

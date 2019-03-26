@@ -26,7 +26,8 @@ https://highlightjs.org/
     }
   }
 
-}(function(hljs) {
+}(
+    function(hljs) {
   // Convenience variables for build-in objects
   var ArrayProto = [],
       objectKeys = Object.keys;
@@ -113,7 +114,6 @@ https://highlightjs.org/
   }
 
   /* Stream merging */
-
   function nodeStream(node) {
     var result = [];
     (function _nodeStream(node, offset) {
@@ -879,4 +879,5 @@ https://highlightjs.org/
   };
 
   return hljs;
-}));
+})
+);
