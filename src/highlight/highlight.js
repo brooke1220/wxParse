@@ -671,43 +671,43 @@ https://highlightjs.org/
   Applies highlighting to a DOM node containing code. Accepts a DOM node and
   two optional parameters for fixMarkup.
   */
-  // function highlightBlock(block) {
-  //   var node, originalStream, result, resultNode, text;
-  //   var language = blockLanguage(block);
-  //
-  //   if (isNotHighlighted(language))
-  //       return;
-  //
-  //   if (options.useBR) {
-  //     node = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
-  //     node.innerHTML = block.innerHTML.replace(/\n/g, '').replace(/<br[ \/]*>/g, '\n');
-  //   } else {
-  //     node = block;
-  //   }
-  //   text = node.textContent;
-  //   result = language ? highlight(language, text, true) : highlightAuto(text);
-  //
-  //   originalStream = nodeStream(node);
-  //   if (originalStream.length) {
-  //     resultNode = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
-  //     resultNode.innerHTML = result.value;
-  //     result.value = mergeStreams(originalStream, nodeStream(resultNode), text);
-  //   }
-  //   result.value = fixMarkup(result.value);
-  //
-  //   block.innerHTML = result.value;
-  //   block.className = buildClassName(block.className, language, result.language);
-  //   block.result = {
-  //     language: result.language,
-  //     re: result.relevance
-  //   };
-  //   if (result.second_best) {
-  //     block.second_best = {
-  //       language: result.second_best.language,
-  //       re: result.second_best.relevance
-  //     };
-  //   }
-  // }
+  function highlightBlock(block) {
+    var node, originalStream, result, resultNode, text;
+    var language = blockLanguage(block);
+
+    if (isNotHighlighted(language))
+        return;
+
+    if (options.useBR) {
+      node = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+      node.innerHTML = block.innerHTML.replace(/\n/g, '').replace(/<br[ \/]*>/g, '\n');
+    } else {
+      node = block;
+    }
+    text = node.textContent;
+    result = language ? highlight(language, text, true) : highlightAuto(text);
+
+    originalStream = nodeStream(node);
+    if (originalStream.length) {
+      resultNode = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+      resultNode.innerHTML = result.value;
+      result.value = mergeStreams(originalStream, nodeStream(resultNode), text);
+    }
+    result.value = fixMarkup(result.value);
+
+    block.innerHTML = result.value;
+    block.className = buildClassName(block.className, language, result.language);
+    block.result = {
+      language: result.language,
+      re: result.relevance
+    };
+    if (result.second_best) {
+      block.second_best = {
+        language: result.second_best.language,
+        re: result.second_best.relevance
+      };
+    }
+  }
 
   /*
   Updates highlight.js global options with values passed in the form of an object.
@@ -719,22 +719,22 @@ https://highlightjs.org/
   /*
   Applies highlighting to all <pre><code>..</code></pre> blocks on a page.
   */
-  // function initHighlighting() {
-  //   if (initHighlighting.called)
-  //     return;
-  //   initHighlighting.called = true;
-  //
-  //   var blocks = document.querySelectorAll('pre code');
-  //   ArrayProto.forEach.call(blocks, highlightBlock);
-  // }
+  function initHighlighting() {
+    if (initHighlighting.called)
+      return;
+    initHighlighting.called = true;
+
+    var blocks = document.querySelectorAll('pre code');
+    ArrayProto.forEach.call(blocks, highlightBlock);
+  }
 
   /*
   Attaches highlighting to the page load event.
   */
-  // function initHighlightingOnLoad() {
-  //   addEventListener('DOMContentLoaded', initHighlighting, false);
-  //   addEventListener('load', initHighlighting, false);
-  // }
+  function initHighlightingOnLoad() {
+    addEventListener('DOMContentLoaded', initHighlighting, false);
+    addEventListener('load', initHighlighting, false);
+  }
 
   function registerLanguage(name, language) {
     var lang = languages[name] = language(hljs);

@@ -15,17 +15,19 @@ class WxParse
    * @param target 微信小程序页面或者组件构造对象
    * @param imagePadding 图片渲染内距
    */
-  static parse(bindName = 'wxParseData', type = 'html', data = '<div class="color:red;">数据不能为空</div>', target, imagePadding) {
+  static parse(bindName = 'wxParseData', type = 'html', data = '<div class="color:red;">数据不能为空</div>', target, imagePadding, baseImageUrl='') {
     const bindData = {};
 
     if (type === 'html') {
-      bindData[bindName] = htmlToJson.html2json(data, bindName);
+      bindData[bindName] = htmlToJson.html2json(data, bindName, baseImageUrl);
     } else if (type === 'md' || type === 'markdown') {
       let converter = new showdown.Converter();
       bindData[bindName] = htmlToJson.html2json(converter.makeHtml(data), bindName);
     }
     bindData[bindName].view = {};
     bindData[bindName].view.imagePadding = typeof (imagePadding) != 'undefined' ? imagePadding : 0;
+    bindData[bindName].view.baseImageUrl = baseImageUrl;
+    console.log(bindData)
 
     target.setData(bindData);
     target.triggerEvent('rendered');

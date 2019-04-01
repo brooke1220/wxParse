@@ -22,15 +22,15 @@
 
 #### 2. 在页面wxml中
 ```html
-<wxparse data="{{ html }}" type="html" padding="5"></wxparse>
+<wxparse data="{{ html }}" type="html" padding="5" url-prefix="https://static.demo.com"></wxparse>
 ```
 属性说明：
 - data： 要渲染到页面的数据
 - type： 要渲染数据的类型（html或者md）
 - padding: 渲染后的图片内距
+- url-prefix: 渲染图片时的固定url前缀
 
 ### 插件方式
-> 关于小程序插件申请，有申请必通过，我会每天早上集中处理。
 #### 1. 微信公众平台后台添加插件
 搜索`htmlparse`,之后添加。
 #### 2. 小程序配置(app.json)中添加插件
@@ -64,7 +64,7 @@
 - 代码高亮使用highlight.js
 - 对于其他语言的支持，请直接到[这里](https://github.com/highlightjs/highlight.js/blob/master/src/languages)查看所有支持的语言
 - 其他的皮肤主题，请到[这里](https://github.com/highlightjs/highlight.js/blob/master/src/styles)查看所有的主题。
-- 添加支持的语言需要在语言在function关键字前加入`export default`
+- 添加支持的语言需要在语言的function关键字前添加`export default`
 - 需要在src/highlight/hljs中注册语言
 - 主题文件需要在wxparse.wxss中引入
 
@@ -80,9 +80,11 @@
 - 后端html转json插件
 
 ## 更新日志
+- 2019-04-01
+    - 添加渲染图片的固定前缀属性(插件1.0.3版本)
 - 2019-03-26
-    - 修复代码块空格显示错乱的问题
-    - 重新提交插件代码（审核未通过，服务类目选择错误--，）
+    - 修复代码块空格显示错乱的问题(插件1.0.2版本)
+    - 重新提交插件代码（审核未通过，服务类目选择错误--，）（插件1.0.1版本）
 - 2019-03-25
     - 添加小程序插件代码
     - 添加实例小程序代码

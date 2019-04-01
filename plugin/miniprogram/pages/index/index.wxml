@@ -1,1 +1,1 @@
-<wxparse data="{{ html }}"></wxparse>
+<wxparse data="{{ html }}" url-prefix="https://ss1.bdstatic.com/"></wxparse>

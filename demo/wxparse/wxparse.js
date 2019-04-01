@@ -25,6 +25,13 @@ Component({
       observer: function () {
         this.render();
       }
+    },
+    urlPrefix: {
+      type: String,
+      value: '',
+      observer: function () {
+        this.render();
+      }
     }
   },
 
@@ -134,7 +141,7 @@ Component({
      * 渲染
      */
     render: function () {
-      wxparse.parse('article', this.properties.type, this.properties.data, this, this.properties.padding);
+      wxparse.parse('article', this.properties.type, this.properties.data, this, this.properties.padding, this.properties.urlPrefix);
     },
 
     /**

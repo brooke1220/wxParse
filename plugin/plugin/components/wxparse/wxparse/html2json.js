@@ -47,18 +47,18 @@ class HtmlToJson
       return html;
   }
 
-    /**
-     * 配置emoji表情
-     * 
-     * @param reg pattern
-     * @param baseSrc string
-     * @param emojis object
-     */
-    static emojisInit(reg='',baseSrc="/wxParse/emojis/",emojis) {
-        __emojisReg = reg;
-        __emojisBaseSrc=baseSrc;
-        __emojis=emojis;
-    }
+  /**
+   * 配置emoji表情
+   * 
+   * @param reg pattern
+   * @param baseSrc string
+   * @param emojis object
+   */
+  static emojisInit(reg='', baseSrc="/wxParse/emojis/", emojis) {
+      __emojisReg = reg;
+      __emojisBaseSrc=baseSrc;
+      __emojis=emojis;
+  }
 
     /**
      * 解析html为json对象
@@ -66,7 +66,7 @@ class HtmlToJson
      * @param html string 
      * @param bindName string
      */
-    static html2json(html, bindName) {
+    static html2json(html, bindName, baseImageUrl) {
         // 处理字符串
       html = HtmlToJson.removeDOCTYPE(html);
       html = HtmlToJson.trimHtml(html);
@@ -157,7 +157,7 @@ class HtmlToJson
                 //对img添加额外数据
                 if (node.tag === 'img') {
                     node.imgIndex = results.images.length;
-                    var imgUrl = node.attr.src;
+                    var imgUrl = baseImageUrl + node.attr.src;
                     if (imgUrl[0] == '') {
                         imgUrl.splice(0, 1);
                     }
