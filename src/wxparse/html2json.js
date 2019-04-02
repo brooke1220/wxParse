@@ -71,7 +71,7 @@ class HtmlToJson
       html = HtmlToJson.removeDOCTYPE(html);
       html = HtmlToJson.trimHtml(html);
       html = wxDiscode.strDiscode(html);
-        
+      
         //生成node节点
         var bufArray = [];
         var results = {

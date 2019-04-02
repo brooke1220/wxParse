@@ -37,7 +37,7 @@ function HTMLParser(html, handler) {
 				// start tag
 			} else if (html.indexOf("<") == 0) {
 				match = html.match(config.reg.startTag);
-
+        console.log(match)
         if (match) {
           html = html.substring(match[0].length);
           match[0].replace(config.reg.startTag, parseStartTag);
