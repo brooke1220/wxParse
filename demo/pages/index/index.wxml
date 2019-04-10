@@ -1,6 +1,19 @@
 <wxs src="../../wxs/string.wxs" module="string" />
 
-<view>
+<swiper 
+  class="carousel"
+  autoplay="true"
+  interval="3000"
+  circular="true"
+  indicator-dots="true">
+  <swiper-item wx:for="{{ posts }}" wx:key="{{ item.id }}" wx:if="{{ item.images.length > 0 }}">
+    <navigator wx:if="{{ item && item.title }}" url="../detail/detail?id={{ item.id }}">
+      <image src="{{ item.images[0] }}"></image>
+    </navigator>
+  </swiper-item>
+</swiper>
+
+<view class="posts">
   <block wx:for="{{ posts }}" wx:key="{{ index }}">
     <navigator wx:if="{{ item && item.title }}" class="post-item" url="../detail/detail?id={{ item.id }}">
       <view class="post-title">{{ item.title }}</view>

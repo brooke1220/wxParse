@@ -17,6 +17,8 @@
 .wxParse-h5 { font-size:.83em; margin: 1.5em 0 }
 .wxParse-h6{ font-size:.75em; margin: 1.67em 0 }
 
+/* .wxParse-ruby { display: inline-flex; } */
+
 .wxParse-h1 {
     font-size: 18px;
     font-weight: 400;
@@ -58,6 +60,13 @@
 .wxParse-strong { 
   font-weight: bolder;
   padding: 10rpx 0;
+}
+
+.wxParse-rt:before {
+  content: '(';
+}
+.wxParse-rt:after {
+  content: ')'
 }
 
 .wxParse-p {
